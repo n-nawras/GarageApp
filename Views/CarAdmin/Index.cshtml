@@ -1,0 +1,51 @@
+﻿@using GarageApp.Data
+@model List<Car>
+
+@{
+    ViewData["Title"] = "Admin Page";
+}
+
+ <div class="uk-container uk-margin-xlarge-top">
+   <div class="uk-grid-match uk-child-width-1-2@m" uk-grid>
+        <h1>Details</h1>
+        <h1 class="uk-text-right">New</h1>
+    </div></br>
+    <div>
+        <table>
+          <tr>
+            <th>LicensePlate</th>
+            <th>Brand</th>
+            <th>Odometer</th>
+            <th>SalesPrice</th>
+          </tr>
+        @foreach(var car in Model)
+        {
+          <tr>
+            <td>@car.LicensePlate</td>
+            <td>@car.Brand</td>
+            <td>@car.Odometer</td>
+            <td>@car.SalesPrice</td>
+            <td><a asp-controller="CarAdmin" asp-action="Details" asp-route-licensePlate="@car.LicensePlate">Edit</a></td>
+          </tr>
+         }
+        </table>
+
+    </div>
+</div>
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+}
+</style>

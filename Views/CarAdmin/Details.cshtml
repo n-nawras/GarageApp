@@ -1,0 +1,122 @@
+﻿@using GarageApp.Data
+@model Car
+
+@{ 
+   ViewBag.Title = $"Edit {Model.LicensePlate}"; 
+} 
+
+
+<div class="uk-section uk-section-default">
+    <div class="uk-container">
+
+        <h3>Edit @Model.LicensePlate</h3>
+
+        <form asp-action="Edit" method="post"> 
+            <fieldset class="uk-fieldset">
+
+                <div class="uk-margin">
+                    <label asp-for = "LicensePlate"></label> 
+                    <input asp-for = "LicensePlate" class="uk-input" type="text">
+                </div>
+
+                <div class="uk-margin">
+                    <label asp-for = "Odometer"></label> 
+                    <input asp-for = "Odometer" class="uk-input" type="text">
+                </div>
+
+
+                <div class="uk-margin">
+                    <label asp-for = "SalesPrice"></label> 
+                    <input asp-for = "SalesPrice" class="uk-input" type="text">
+                </div>
+
+                <header class="uk-comment-header">
+                    <div class="uk-grid-medium uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-comment-avatar" src="@Model.ImageFileName" width="100" height="0" alt="">
+                        </div>
+                        <div class="uk-width-expand">
+
+                            <div class="js-upload uk-placeholder uk-text-center">
+                                <span uk-icon="icon: cloud-upload"></span>
+                                <span class="uk-text-middle">Upload a image</span>
+                                <div uk-form-custom>
+                                    <input type="file" multiple>
+                                    <span class="uk-link">selecting one</span>
+                                </div>
+                            </div>                                    
+                        </div>
+                        <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+                    </div>
+                </header>
+
+            </fieldset>
+            <div> 
+                <input class="uk-button uk-button-default" type = "submit" value = "Save" /> 
+            </div> 
+        </form>
+    </div>
+</div>
+
+<script>
+
+    var bar = document.getElementById('js-progressbar');
+
+    UIkit.upload('.js-upload', {
+
+        url: '/FileUpload',
+        allow : '*.(jpg|jpeg|gif|png)',
+        multiple: true,
+
+        beforeSend: function () {
+            console.log('beforeSend', arguments);
+        },
+        beforeAll: function () {
+            console.log('beforeAll', arguments);
+        },
+        load: function () {
+            console.log('load', arguments);
+        },
+        error: function () {
+            console.log('error', arguments);
+
+        },
+        complete: function () {
+            console.log('complete', arguments);
+        },
+
+        loadStart: function (e) {
+            console.log('loadStart', arguments);
+
+            bar.removeAttribute('hidden');
+            bar.max = e.total;
+            bar.value = e.loaded;
+        },
+
+        progress: function (e) {
+            console.log('progress', arguments);
+
+            bar.max = e.total;
+            bar.value = e.loaded;
+        },
+
+        loadEnd: function (e) {
+            console.log('loadEnd', arguments);
+
+            bar.max = e.total;
+            bar.value = e.loaded;
+        },
+
+        completeAll: function () {
+            console.log('completeAll', arguments);
+
+            setTimeout(function () {
+                bar.setAttribute('hidden', 'hidden');
+            }, 1000);
+
+            alert('Upload Completed');
+        }
+
+    });
+
+</script>

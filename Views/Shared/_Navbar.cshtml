@@ -1,0 +1,87 @@
+﻿        @using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<div class="na-navbar page-header-navbar uk-background-default" uk-sticky>
+            <div class="uk-container uk-container-expand uk-height-1-1">
+                <nav class="uk-height-1-1" uk-navbar>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="uk-flex uk-flex-middle">
+                        <h4>logo</h4>
+                    </a>
+                    <ul class="uk-navbar-nav uk-navbar-center uk-visible@l">
+                        <li class="na-nabar-link">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="na-nabar-link">
+                            <a class="nav-link text-dark" asp-controller="Car" asp-action="Index">Cars</a>
+                        </li>
+
+                        <li class="na-nabar-link">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                    <div class="uk-navbar-right">
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                //<a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+                            <a class="nav-link text-dark" asp-controller="CarAdmin" asp-action="Index">Admin</a>
+                                <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                    <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                </form>
+                            }
+                            else
+                            {
+
+                           //   <a class="uk-link-muted" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                                <a class="uk-link-muted" asp-area="Identity" asp-page="/Account/Login">Login</a>
+
+                            }
+                     
+
+
+                    </div>
+                </nav>
+            </div>
+          
+        </div>
+
+
+        
+        <style>
+        
+        
+        .page-header-navbar .uk-navbar-nav > li > a,
+        .page-header-navbar .uk-icon-link,
+        .page-header-navbar .uk-icon-link:hover {
+            color: #001455;
+        }
+        .page-header-navbar .uk-navbar-nav > li > a {
+            padding: 0 25px;
+        }
+        .page-header-navbar .multi .uk-navbar-dropdown {
+              padding: 0 25px;
+        }
+        .page-header-navbar [class*="uk-column-"] > li {
+              padding: 25px 0;
+        }
+        .page-header-navbar [class*="uk-column-"] > li:not(:last-child) {
+              border-right: 1px solid #E5E5E5;
+        }
+        .offcanvas .uk-nav-header {
+              color: rgba(246, 247, 249, 0.5);
+        }
+        .offcanvas .top-menu > li + li {
+              margin-top: 10px;
+        }
+        .offcanvas .sub-menu {
+              border-left: 1px solid #484848;
+        }
+        .offcanvas .sub-menu li {
+              padding-left: 30px;
+        }
+        .offcanvas .sub-menu li.uk-nav-header {
+              padding-left: 10px;
+        }
+
+        
+        </style>

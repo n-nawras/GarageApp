@@ -1,0 +1,94 @@
+﻿@using GarageApp.Data
+@model List<Car>
+
+@{
+    ViewData["Title"] = "Cards";
+}
+
+        <div class="uk-section uk-section-default">
+            <div class="uk-container uk-container-medium">
+                <h1 class="uk-text-bolder na-text-color uk-margin-small na-animate-charcter">C A R S</h1><hr>
+                <div id="searchForm">
+                    @inject ApplicationDbContext dbContext;
+                    <form onchange="submit()">
+                        <div class="uk-grid-match uk-child-width-1-4@m" uk-grid>
+                            <div class="uk-margin">
+                                <label>Brands</label>
+                                <select class="uk-select" name="brand">
+                                    <option value=""></option>
+                                    @foreach(var brand in dbContext.Cars.Select(c=> c.Brand).Distinct().ToList())
+                                    {
+                                        <option>@brand</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="uk-margin">
+                                <label>LicensePlate</label>
+                                <select class="uk-select" name="LicensePlate">
+                                    <option value=""></option>
+                                    @foreach(var LicensePlate in dbContext.Cars.Select(c=> c.LicensePlate).Distinct().ToList())
+                                    {
+                                        <option>@LicensePlate</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="uk-margin">
+                                <label>Odometer</label>
+                                <select class="uk-select">
+                                    <option value=""></option>
+                                    @foreach(var Odometer in dbContext.Cars.Select(c=> c.Odometer).Distinct().ToList())
+                                    {
+                                        <option>@Odometer</option>
+                                    }
+                                </select>
+                            </div>
+                        
+                            <div class="uk-margin">
+                                <label>SalesPrice</label>
+                                <select class="uk-select" name="SalesPrice">
+                                    <option value=""></option>
+                                    @foreach(var SalesPrice in dbContext.Cars.Select(c=> c.SalesPrice).Distinct().ToList())
+                                    {
+                                        <option>@SalesPrice</option>
+                                    }
+                                </select>
+                            </div>
+                         </div>
+                    </form>
+
+                </div><hr>
+
+                <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+                    @foreach(var car in Model)
+                    {
+                    <div class="uk-section uk-section-muted">
+                        <article class="uk-comment">
+                            <header class="uk-comment-header">
+                                <div class="uk-grid-medium uk-flex-middle" uk-grid>
+                                    <div class="uk-width-auto">
+                                        <img class="uk-comment-avatar" src="@car.ImageFileName" width="80" height="80" alt="">
+                                    </div>
+                                    <div class="uk-width-expand">
+                                        <h5 class="uk-text-lead uk-text-bold na-text-color uk-text-uppercase">@car.Brand</h5>
+                                    </div>
+                                </div>
+                            </header>
+                            <div class="uk-comment-body">
+                                <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+                                    <p>@car.LicensePlate</p>
+                                    <p>KM @car.Odometer</p>
+                                    <p>$ @car.SalesPrice</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                     }
+                </div>
+            </div>
+        </div>
+
+
+
+
