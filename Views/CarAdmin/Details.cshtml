@@ -11,23 +11,28 @@
 
         <h3>Edit @Model.LicensePlate</h3>
 
-        <form asp-action="Edit" method="post"> 
+        <form asp-action="Edit" method="post" > 
             <fieldset class="uk-fieldset">
-
+                
+                <input hidden asp-for="LicensePlate" />
+                
                 <div class="uk-margin">
-                    <label asp-for = "LicensePlate"></label> 
-                    <input asp-for = "LicensePlate" class="uk-input" type="text">
+                    <label asp-for = "Brand"></label> 
+                    <input asp-for = "Brand" class="uk-input" type="text">
+                    <span asp-validation-for="Brand" class="uk-text-danger"></span>
                 </div>
 
                 <div class="uk-margin">
                     <label asp-for = "Odometer"></label> 
                     <input asp-for = "Odometer" class="uk-input" type="text">
+                    <span asp-validation-for="Odometer" class="uk-text-danger"></span>
                 </div>
 
 
                 <div class="uk-margin">
                     <label asp-for = "SalesPrice"></label> 
                     <input asp-for = "SalesPrice" class="uk-input" type="text">
+                    <span asp-validation-for="SalesPrice" class="uk-text-danger"></span>
                 </div>
 
                 <header class="uk-comment-header">
@@ -57,6 +62,9 @@
         </form>
     </div>
 </div>
+@{
+    var fileUploadUrl = @Url.Action("UploadFile", new {licensePlate = Model.LicensePlate});
+}
 
 <script>
 
@@ -64,7 +72,7 @@
 
     UIkit.upload('.js-upload', {
 
-        url: '/FileUpload',
+        url: '@fileUploadUrl',
         allow : '*.(jpg|jpeg|gif|png)',
         multiple: true,
 

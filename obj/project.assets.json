@@ -3374,11 +3374,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Leren1\\GarageApp\\GarageApp.csproj",
+      "projectUniqueName": "D:\\Code\\GarageApp\\src\\GarageApp\\GarageApp.csproj",
       "projectName": "GarageApp",
-      "projectPath": "D:\\Leren1\\GarageApp\\GarageApp.csproj",
+      "projectPath": "D:\\Code\\GarageApp\\src\\GarageApp\\GarageApp.csproj",
       "packagesPath": "C:\\Users\\Wiseconn\\.nuget\\packages\\",
-      "outputPath": "D:\\Leren1\\GarageApp\\obj\\",
+      "outputPath": "D:\\Code\\GarageApp\\src\\GarageApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Wiseconn\\AppData\\Roaming\\NuGet\\NuGet.Config",
